@@ -1,0 +1,36 @@
+inherit_from: configs/dual/default.yaml
+training:
+  out_dir: output/stl10/dualgan_ab_0.1_0.25
+  batch_size: 64
+  log_every: 100
+  gan_type: standard
+  sample_every: 500
+  nworkers: 72
+  dual_alpha: 0.1
+  dual_beta: 0.25
+data:
+  type: stl10
+  train_dir: data/stl10
+  img_size: 32
+  nlabels: 10
+generator:
+  name: dcgan_deep32 #dcgan_deep32 #dcgan_shallow
+  nlabels: 1
+  conditioning: unconditional
+  kwargs:
+    placeholder: None
+discriminator1:
+  name: dcgan_deep32
+  nlabels: 1
+  conditioning: unconditional
+  kwargs:
+    placeholder: None
+discriminator2:
+  name: dcgan_deep32
+  nlabels: 1
+  conditioning: unconditional
+  kwargs:
+    placeholder: None
+z_dist:
+  type: uniform
+  dim: 100

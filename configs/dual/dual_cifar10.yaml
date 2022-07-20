@@ -1,0 +1,35 @@
+inherit_from: configs/dual/default.yaml
+training:
+  out_dir: output/cifar/gan
+  batch_size: 64
+  log_every: 100
+  gan_type: standard
+  nworkers: 72
+  dual_alpha: 0.3
+  dual_beta: 0.5
+data:
+  type: cifar10
+  train_dir: data/CIFAR
+  img_size: 32
+  nlabels: 10
+generator:
+  name: dcgan_shallow #dcgan_deep32
+  nlabels: 1
+  conditioning: unconditional
+  kwargs:
+    placeholder: None
+discriminator1:
+  name: dcgan_shallow
+  nlabels: 1
+  conditioning: unconditional
+  kwargs:
+    placeholder: None
+discriminator2:
+  name: dcgan_shallow
+  nlabels: 1
+  conditioning: unconditional
+  kwargs:
+    placeholder: None
+z_dist:
+  type: uniform
+  dim: 100
